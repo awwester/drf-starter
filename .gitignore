@@ -1,0 +1,3 @@
+__pycache__/
+api/api/settings/local.py
+.env
