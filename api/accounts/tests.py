@@ -7,7 +7,7 @@ from core.tests import BaseAPITestCase
 class AccountsAPITestCase(BaseAPITestCase):
 
     def test_user_can_login(self):
-        url = reverse('rest_login')
+        url = reverse('jwt-obtain')
         payload = {
             "username": self.roger_user.username,
             "password": "2424df22"
@@ -15,19 +15,28 @@ class AccountsAPITestCase(BaseAPITestCase):
         response = self.client.post(url, payload)
         self.assertEqual(response.status_code, 200)
 
+    def test_user_can_refresh_credentials(self):
+        url = reverse('jwt-obtain')
+        payload = {
+            "username": self.roger_user.username,
+            "password": "2424df22"
+        }
+        response = self.client.post(url, payload)
+        token = response.json().get('token')
+
+        url = reverse('jwt-refresh')
+        payload = { "token": token }
+        response = self.client.post(url, payload)
+        self.assertEqual(response.status_code, 200)
+
     def test_incorrect_credentials(self):
-        url = reverse('rest_login')
+        url = reverse('jwt-obtain')
         payload = {
             "username": self.roger_user.username,
             "password": "WRONGPASSWORD"
         }
         response = self.client.post(url, payload)
         self.assertEqual(response.status_code, 400)
-
-    def test_user_can_logout(self):
-        url = reverse('rest_logout')
-        response = self.roger_client.post(url)
-        self.assertEqual(response.status_code, 200)
 
     def test_user_can_register(self):
         url = reverse('rest_register')
