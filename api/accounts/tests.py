@@ -3,7 +3,6 @@ from django.urls import reverse
 from core.tests import BaseAPITestCase
 
 
-
 class AccountsAPITestCase(BaseAPITestCase):
 
     def test_user_can_login(self):

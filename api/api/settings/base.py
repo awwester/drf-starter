@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # installed apps
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'drf_yasg',
     'rest_auth',
     'rest_auth.registration',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     # project apps
     'accounts',
     'core',
+    'items',
 ]
 
 SITE_ID = 1

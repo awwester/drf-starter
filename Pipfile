@@ -14,6 +14,7 @@ django-allauth = "*"
 drf-yasg = "*"
 djangorestframework-camel-case = "*"
 psycopg2-binary = "*"
+model-mommy = "*"
 
 [requires]
 python_version = "3.7"
