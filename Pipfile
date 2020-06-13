@@ -15,6 +15,7 @@ drf-yasg = "*"
 djangorestframework-camel-case = "*"
 psycopg2-binary = "*"
 model-mommy = "*"
+djangorestframework-jwt = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

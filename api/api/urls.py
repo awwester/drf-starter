@@ -1,3 +1,5 @@
+from rest_framework_jwt.views import refresh_jwt_token, obtain_jwt_token
+
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
@@ -20,6 +22,8 @@ urlpatterns = [
     path(v1_url('docs/'), schema_view.with_ui('redoc', cache_timeout=0),
          name='api-docs'),
     path(v1_prefix, include(router.urls)),
-    path(v1_url('auth/'), include('rest_auth.urls')),
+    # path(v1_url('auth/'), include('rest_auth.urls')),
     path(v1_url('auth/registration/'), include('rest_auth.registration.urls')),
+    path(v1_url('auth/jwt/'), obtain_jwt_token, name="jwt-obtain"),
+    path(v1_url('auth/jwt/refresh/'), refresh_jwt_token, name="jwt-refresh"),
 ]
