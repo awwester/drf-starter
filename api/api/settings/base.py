@@ -47,14 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # installed apps
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
     'drf_yasg',
-    'rest_auth',
-    'rest_auth.registration',
-    'rest_framework',
-    'rest_framework.authtoken',
     'corsheaders',
 
     # project apps
@@ -151,30 +144,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-# API settings
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
-    ),
-    'DEFAULT_PARSER_CLASSES': (
-        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
-    ),
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    'JSON_UNDERSCOREIZE': {
-        'no_underscore_before_number': True,
-    },
-}
-
-JWT_AUTH = {
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=365 * 3),
-}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

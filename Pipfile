@@ -8,14 +8,11 @@ verify_ssl = true
 [packages]
 django = "*"
 djangorestframework = "*"
-django-rest-auth = "*"
 django-cors-headers = "*"
-django-allauth = "*"
 drf-yasg = "*"
 djangorestframework-camel-case = "*"
 psycopg2-binary = "*"
 model-mommy = "*"
-djangorestframework-jwt = "*"
 
 [requires]
 python_version = "3.8"
