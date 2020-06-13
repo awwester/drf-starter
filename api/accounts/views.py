@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import CustomUserSerializer
 
 
 class UserViewSet(GenericViewSet):
@@ -13,7 +13,7 @@ class UserViewSet(GenericViewSet):
     serializers.py file and allow adding a ViewSet through the router.
     """
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = CustomUserSerializer
 
     @action(detail=False, permission_classes=[IsAuthenticated])
     def me(self, request):
