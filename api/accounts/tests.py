@@ -6,50 +6,56 @@ from core.tests import BaseAPITestCase
 class AccountsAPITestCase(BaseAPITestCase):
 
     def test_user_can_login(self):
-        url = reverse('jwt-obtain')
+        url = reverse('jwt-create')
         payload = {
             "username": self.roger_user.username,
             "password": "2424df22"
         }
         response = self.client.post(url, payload)
         self.assertEqual(response.status_code, 200)
+        expected = ['refresh', 'access']
+        for key in expected:
+            self.assertNotEqual(response.json().get(key), None)
 
     def test_user_can_refresh_credentials(self):
-        url = reverse('jwt-obtain')
+        url = reverse('jwt-create')
         payload = {
             "username": self.roger_user.username,
             "password": "2424df22"
         }
         response = self.client.post(url, payload)
-        token = response.json().get('token')
+        refresh_token = response.json().get('refresh')
 
+        # Now that we have the token we can refresh.
         url = reverse('jwt-refresh')
-        payload = { "token": token }
+        payload = {"refresh": refresh_token}
         response = self.client.post(url, payload)
         self.assertEqual(response.status_code, 200)
+        self.assertNotEqual(response.json().get('access'), None)
 
     def test_incorrect_credentials(self):
-        url = reverse('jwt-obtain')
+        url = reverse('jwt-create')
         payload = {
             "username": self.roger_user.username,
             "password": "WRONGPASSWORD"
         }
         response = self.client.post(url, payload)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 401)
+        self.assertNotEqual(response.json().get('detail'), None)
 
     def test_user_can_register(self):
-        url = reverse('rest_register')
+        url = reverse('user-list')
         payload = {
             "username": "newuser",
-            "password1": "somepassword1",
-            "password2": "somepassword1",
+            "password": "somepassword1",
+            "rePassword": "somepassword1",
             "firstName": "New",
             "lastName": "User",
             "email": "newuser@asdf.com",
         }
         response = self.client.post(url, payload)
         self.assertEqual(response.status_code, 201)
-        self.assertNotEqual(response.json().get('key'), None)
+        self.assertNotEqual(response.json().get('email'), None)
 
     def test_user_can_get_their_data(self):
         url = reverse('user-me')

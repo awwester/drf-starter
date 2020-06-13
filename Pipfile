@@ -13,6 +13,8 @@ drf-yasg = "*"
 djangorestframework-camel-case = "*"
 psycopg2-binary = "*"
 model-mommy = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.8"

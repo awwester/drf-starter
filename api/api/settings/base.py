@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # installed apps
     'drf_yasg',
     'corsheaders',
+    'djoser',
 
     # project apps
     'accounts',
@@ -151,3 +152,26 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Custom application settings, everything above here are django settings.
 
 TEST_MODE = sys.argv[1:2] == ['test']
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+        'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseFormParser',
+        'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+    ),
+}
+
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}

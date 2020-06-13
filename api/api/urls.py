@@ -20,4 +20,6 @@ urlpatterns = [
     path(v1_url('docs/'), schema_view.with_ui('redoc', cache_timeout=0),
          name='api-docs'),
     path(v1_prefix, include(router.urls)),
+    path(f'{v1_prefix}auth/', include('djoser.urls')),
+    path(f'{v1_prefix}auth/', include('djoser.urls.jwt')),
 ]
