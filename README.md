@@ -6,6 +6,7 @@ This is a starter project that is a great place to start handling a lot of the b
 - Django
 - Django Rest Framework
 - Authentication endpoints
+- Testing base
 
 # Install
 The only system requisites are docker and docker-compose, everything else is handled inside the docker container.
