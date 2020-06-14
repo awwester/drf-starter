@@ -8,7 +8,7 @@ class TimeDelayMiddleware(object):
     """
     def __init__(self, get_response):
         self.get_response = get_response
-        self.delay = settings.REQUEST_TIME_DELAY
+        self.delay = float(settings.REQUEST_TIME_DELAY)
 
     def __call__(self, request):
         if request.content_type == 'application/json' and self.delay > 0:
